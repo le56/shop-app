@@ -11,10 +11,10 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></link>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css" />
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.min.css" />
                     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></link>
                     <link rel="stylesheet" href="styles.css" />
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
                     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

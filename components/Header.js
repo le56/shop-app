@@ -1,5 +1,34 @@
 import React from 'react'
+import { useRouter } from 'next/router'
+import { Datacontect } from '../Store/GlobalStore'
+import { useContext } from 'react'
+import Cookies from 'js-cookie'
+import Link from 'next/link'
 export default function Header() {
+    const { state, dispatch } = useContext(Datacontect);
+    const router = useRouter();
+    const handleLogout = () => {
+        Cookies.remove('refreshtoken', { path: 'api/auth/accessToken' })
+
+        localStorage.removeItem('firstLogin')
+
+        dispatch({ type: 'AUTH', payload: {} });
+        router.push("/signin")
+
+    }
+   /*  const loogedRouter = () => {
+        if (state) {
+            console.log(state)
+            return (<>
+                <a href="#" className="icon__item">
+                    <i className="fas fa-shopping-cart"></i>
+                </a>
+                <a href="#" className="icon__item">
+                    <i className="fas fa-sign-out-alt" onClick={handleLogout}></i>
+                </a>
+            </>)
+        }
+    } */
     return (
         <header id="header" className="header">
             <div className="navigation">
@@ -40,16 +69,25 @@ export default function Header() {
                             </ul>
                         </div>
                         <div className="nav__icons">
-                            <a href="#" className="icon__item">
+                            <Link href='/signin'>
+                            <a className="icon__item">
                                 <i className="fas fa-user"></i>
                             </a>
+                            </Link>
                             <a href="#" className="icon__item">
                                 <i className="fas fa-search"></i>
                             </a>
-                            <a href="#" className="icon__item">
-                                <i className="fas fa-shopping-cart"></i>
-                                <span id="cart__total">0</span>
-                            </a>
+                            {
+                                Object.keys(state.auth).length > 0 && <>
+                                <a href="#" className="icon__item">
+                                    <i className="fas fa-shopping-cart"></i>
+                                </a>
+                                <div className="icon__item" style={{cursor:'pointer'}}>
+                                    <i className="fas fa-sign-out-alt" onClick={handleLogout}></i>
+                                </div>
+                            </>
+                            }
+                          {/*   {loogedRouter()} */}
                         </div>
                     </nav>
                 </div>

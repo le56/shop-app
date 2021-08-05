@@ -20,7 +20,7 @@ export const PostData= async (url, post ,token )=>{
     })
     const data = res.json()
     return data;
-}
+}   
 export const PutsData= async (url, post ,token )=>{
     const res = await fetch(`${baseURL}/api/${url}`,{
         method: 'PUST',

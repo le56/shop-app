@@ -1,10 +1,18 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Head from "next/head"
 import Link from 'next/link'
+import {useRouter} from 'next/router'
+import { Datacontect } from './../Store/GlobalStore'
+import { PostData } from '../Utils/FetchData';
+import Cookies from 'js-cookie';
 const SignIn = () => {
   const initialState = { email: '', password: '' };
   const [data, setdata] = useState(initialState);
   const { email, password } = data;
+  const { state, dispatch } = useContext(Datacontect)
+  const { auth } = state;
+  console.log(state);
+  const router = useRouter();
 
   const handelChangeInput = e => {
     const { name, value } = e.target;
@@ -12,10 +20,34 @@ const SignIn = () => {
   }
   const handelSubmit = async e => {
     e.preventDefault();
- 
+    dispatch({ type: 'NOTIFY', payload: { loading: true } })
+
+    const res = await PostData('auth/login', data);
+
+    if (res.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } })
+    dispatch({ type: 'NOTIFY', payload: { success: res.msg } })
+
+    dispatch({
+      type: 'AUTH', payload: {
+        token: res.access_token,
+        user: res.user
+      }
+    })
+
+    Cookies.set('refreshtoken', res.refresh_token, {
+      path: 'api/auth/accessToken',
+      expires: 7
+    })
+    localStorage.setItem('firstLogin', true)
+    console.log(res);
   }
+
+  useEffect(() => {
+    if (Object.keys(auth).length !== 0) router.push("/")
+  }, [auth])
+
   return (
-    <div style={{marginLeft:'5px', marginRight:'5px', marginTop:'50px', fontSize:'18px'}}>
+    <div style={{ marginLeft: '5px', marginRight: '5px', marginTop: '50px', fontSize: '18px' }}>
       <Head>
         <title>Sign In</title>
       </Head>

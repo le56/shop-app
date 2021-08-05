@@ -4,11 +4,15 @@ import { useState, useContext } from 'react'
 import Valid from "../Utils/valid";
 import { Datacontect } from '../Store/GlobalStore'
 import { PostData } from "../Utils/FetchData";
+import { useRouter } from 'next/router'
 const Register = () => {
+
   const initialState = { name: '', email: '', password: '', cf_password: '' };
   const [data, setdata] = useState(initialState);
   const { name, email, password, cf_password } = data;
+  const router =useRouter();
   const {state, dispatch}= useContext(Datacontect);
+  
   const handelChangeInput =  e => {
     const { name, value } = e.target;
     setdata({ ...data, [name]: value })
@@ -20,7 +24,10 @@ const Register = () => {
     dispatch({type:'NOTIFY', payload:{loading:true}})
     const res  = await PostData('auth/register', data)
     if(res.err) return dispatch({type:'NOTIFY', payload:{error:res.err}})
-    return  dispatch({type:'NOTIFY', payload:{success:res.msg}})
+    else {
+      router.push('/signin')
+      return  dispatch({type:'NOTIFY', payload:{success:res.msg}})
+    }
   }
   return (
     <div  style={{marginLeft:'5px', marginRight:'5px', marginTop:'50px', fontSize:'18px'}}>
