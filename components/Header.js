@@ -16,19 +16,6 @@ export default function Header() {
         router.push("/signin")
 
     }
-   /*  const loogedRouter = () => {
-        if (state) {
-            console.log(state)
-            return (<>
-                <a href="#" className="icon__item">
-                    <i className="fas fa-shopping-cart"></i>
-                </a>
-                <a href="#" className="icon__item">
-                    <i className="fas fa-sign-out-alt" onClick={handleLogout}></i>
-                </a>
-            </>)
-        }
-    } */
     return (
         <header id="header" className="header">
             <div className="navigation">
@@ -58,7 +45,9 @@ export default function Header() {
                                     <a href="#header" className="nav__link scroll-link">Home</a>
                                 </li>
                                 <li className="nav__item">
-                                    <a href="#category" className="nav__link scroll-link">Category</a>
+                                    <Link href="/product">
+                                    <a className="nav__link scroll-link">Product</a>
+                                    </Link>
                                 </li>
                                 <li className="nav__item">
                                     <a href="#news" className="nav__link scroll-link">Blog</a>
