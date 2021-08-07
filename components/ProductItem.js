@@ -5,7 +5,7 @@ export default function ProductItem({ product }) {
     const userLink = () => {
         return <>
             <Link href={`products/${product._id}`}>
-                <a><button className="product__btn">Add To Cart</button></a>
+                <a href={`products/${product._id}`}><button className="product__btn">Add To Cart</button></a>
             </Link>
         </>
     }

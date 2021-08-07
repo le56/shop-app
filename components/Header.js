@@ -69,6 +69,7 @@ export default function Header() {
                             {
                                 Object.keys(state.auth).length > 0 && <>
                                 <a href="#" className="icon__item">
+                                    <span style={{position:'absolute',top:'-5px',right:'38px',backgroundColor:'crimson',color:'white',padding:'3px',borderRadius:'50%',width:'15px',height:'15px',textAlign:'center'}}>0</span>
                                     <i className="fas fa-shopping-cart"></i>
                                 </a>
                                 <div className="icon__item" style={{cursor:'pointer'}}>

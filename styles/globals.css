@@ -2,11 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  font-family: "Archivo", sans-serif;
 }
 
 * {
@@ -16,5 +12,6 @@ a {
   width: 30px;
   height: 30px;
 }
-
+@import url("./bootstrap.css");
+@import url("./Style.css");
 @import url("./Loading.css");

@@ -4,14 +4,13 @@ import {GetData} from '../Utils/FetchData'
 
 export default function product(props) {
     const [productList, setProductList] = useState(props.productProps)
-    console.log(productList)
     const showProduct = ()=>{
         return productList.map((product)=>{
             return <ProductItem product={product} key={product._id}></ProductItem>
         })
     }
     return (
-        <div className="containxer" style={{marginTop:'20px'}}>
+        <div className="container" style={{marginTop:'20px'}}>
             <div className="row">
             {showProduct()}
             </div>
@@ -24,7 +23,7 @@ export async function getServerSideProps(){
     return {
         props:{
             productProps: res.products,
-            result: res.result
+            result: res.result  
         },
     }
 }

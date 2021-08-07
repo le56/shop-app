@@ -30,7 +30,7 @@ const Register = () => {
     }
   }
   return (
-    <div  style={{marginLeft:'5px', marginRight:'5px', marginTop:'50px', fontSize:'18px'}}>
+    <div  style={{marginLeft:'5px', marginRight:'5px', marginTop:'50px'}}>
       <Head>
         <title>Register Page</title>
       </Head>
