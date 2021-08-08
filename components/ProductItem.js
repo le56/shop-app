@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Link from 'next/link'
-
+import { Datacontect } from '../Store/GlobalStore'
+import { PatchData } from '../Utils/FetchData';
 export default function ProductItem({ product }) {
+    const { state, dispatch } = useContext(Datacontect);
+    const cartList = [];
+    const [num, setNum] = useState(cartList)
+    const { auth } = state;
+    const addToCart = (product) => {
+        const cart = auth.user.cart;
+        cart.push(product)
+        PatchData('addToCart', cart, auth.token)
+    }
     const userLink = () => {
         return <>
             <Link href={`products/${product._id}`}>
-                <a href={`products/${product._id}`}><button className="product__btn">Add To Cart</button></a>
+                <a href={`products/${product._id}`}><button className="product__btn" onClick={() => addToCart(product)}>Add To Cart</button></a>
             </Link>
         </>
     }

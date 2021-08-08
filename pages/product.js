@@ -19,7 +19,6 @@ export default function product(props) {
 }
 export async function getServerSideProps(){
     const res  = await GetData('product')
-    console.log(res);       
     return {
         props:{
             productProps: res.products,

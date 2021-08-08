@@ -70,6 +70,8 @@ const getProducts = async (req, res) => {
     }
 }
 
+
+
 /* const createProduct = async (req, res) => {
     try {
         const result = await auth(req, res)

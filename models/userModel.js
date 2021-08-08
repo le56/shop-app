@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'user'
     },
+    cart: {
+        type: Array,
+        required: false
+    },
     root: {
         type: Boolean,
         default: false

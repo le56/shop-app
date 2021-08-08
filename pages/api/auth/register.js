@@ -13,7 +13,6 @@ export default async (req, res) => {
             break;
     }
 }
-
 const register = async (req, res) => {
     try{
         const { name, email, password, cf_password } = req.body
@@ -27,7 +26,7 @@ const register = async (req, res) => {
         const passwordHash = await bcrypt.hash(password, 12)
 
         const newUser = new Users({ 
-            name, email, password: passwordHash, cf_password 
+            name, email, password: passwordHash, cf_password
         })
 
         await newUser.save()

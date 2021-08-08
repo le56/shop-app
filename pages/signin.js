@@ -11,7 +11,6 @@ const SignIn = () => {
   const { email, password } = data;
   const { state, dispatch } = useContext(Datacontect)
   const { auth } = state;
-  console.log(state);
   const router = useRouter();
 
   const handelChangeInput = e => {

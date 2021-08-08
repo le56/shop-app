@@ -7,22 +7,26 @@ import { PostData } from "../Utils/FetchData";
 import { useRouter } from 'next/router'
 const Register = () => {
 
-  const initialState = { name: '', email: '', password: '', cf_password: '' };
+  const initialState = { name: '', email: '', password: '', cf_password: ''};
   const [data, setdata] = useState(initialState);
   const { name, email, password, cf_password } = data;
   const router =useRouter();
   const {state, dispatch}= useContext(Datacontect);
   
   const handelChangeInput =  e => {
+
     const { name, value } = e.target;
     setdata({ ...data, [name]: value })
+    
   }
   const handelSubmit = async e => {
     e.preventDefault();
     const errMsg = Valid(name, email, password, cf_password)
     if(errMsg) return dispatch({type:'NOTIFY', payload:{error:errMsg}})
     dispatch({type:'NOTIFY', payload:{loading:true}})
+
     const res  = await PostData('auth/register', data)
+
     if(res.err) return dispatch({type:'NOTIFY', payload:{error:res.err}})
     else {
       router.push('/signin')
